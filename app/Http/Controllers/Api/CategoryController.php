@@ -18,7 +18,7 @@ class CategoryController extends ApiBaseController
     public function index()
     {
         try {
-            dd(Auth::user());
+          
             $categories = Category::all();
             return $this->sendSuccess(
                 data: $categories,

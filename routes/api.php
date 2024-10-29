@@ -10,7 +10,7 @@ Route::post('/login', [AuthController::class, 'login'])->name('login');
 
 Route::middleware(['auth:sanctum', 'role:admin'])->group(function () {
     Route::apiResource('categories', CategoryController::class);
-    Route::get('user-list', AuthController::class, 'userList');
+    Route::get('/user-list', [AuthController::class, 'userList']);
     Route::get('/admin/dashboard', function () {
         return response()->json(['message' => 'Welcome to the admin dashboard']);
     });

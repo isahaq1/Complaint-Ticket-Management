@@ -44,14 +44,5 @@ class User extends Authenticatable
         'password' => 'hashed',
     ];
 
-    public function isDeveloper()
-    {
-
-        foreach ($this->roles as $role) {
-            if ($role->id == 1) {
-                return true;
-            }
-        }
-        return false;
-    }
+   
 }

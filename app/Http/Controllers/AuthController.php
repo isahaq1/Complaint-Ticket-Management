@@ -44,8 +44,14 @@ class AuthController extends Controller
         }
 
         $token = $user->createToken('api-token')->plainTextToken;
+        $roleName = $user->getRoleNames()->first() ?? 'No role assigned';
+        $data = [
+            'name'  => $user->name,
+            'email' => $user->email,
+            'role'  => $roleName,
+        ];
 
-        return response()->json(['token' => $token, 'success' => true]);
+        return response()->json(['data' => $data, 'token' => $token, 'success' => true]);
     }
 
     public function userList()
