@@ -1,6 +1,7 @@
 <?php
 
 namespace App\Http\Controllers;
+
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
@@ -22,8 +23,8 @@ class AuthController extends Controller
             'password' => Hash::make($request->password),
         ]);
 
-        $user->assignRole('user'); // Default role assignment
-
+        //$user->assignRole('user'); // Default role assignment
+        $user->assignRole('admin');
         return response()->json(['user' => $user], 201);
     }
 
