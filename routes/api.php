@@ -15,7 +15,7 @@ Route::middleware(['auth:sanctum', 'role:admin'])->group(function () {
 
 Route::middleware(['auth:sanctum', 'role:user'])->group(function () {
     Route::get('/user/dashboard', function () {
-        return response()->json(['message' => 'Welcome to the user dashboard']);
+        return response()->json(['message' => 'test Welcome to the user dashboard']);
     });
 });
 
