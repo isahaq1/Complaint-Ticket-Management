@@ -47,4 +47,11 @@ class AuthController extends Controller
 
         return response()->json(['token' => $token, 'success' => true]);
     }
+
+    public function userList()
+    {
+        $users = User::all();
+
+        return response()->json(['status' => true, 'message' => 'User Data Fetch Successfully', 'data' => $users], 200);
+    }
 }
