@@ -25,7 +25,7 @@ class AuthController extends Controller
 
         //$user->assignRole('user'); // Default role assignment
         $user->assignRole('admin');
-        return response()->json(['user' => $user], 201);
+        return response()->json(['user' => $user, 'success' => true], 201);
     }
 
     public function login(Request $request)
@@ -45,6 +45,6 @@ class AuthController extends Controller
 
         $token = $user->createToken('api-token')->plainTextToken;
 
-        return response()->json(['token' => $token]);
+        return response()->json(['token' => $token, 'success' => true]);
     }
 }
