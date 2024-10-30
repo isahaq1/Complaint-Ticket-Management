@@ -47,7 +47,6 @@ class ComplaintController extends ApiBaseController
      */
     public function store(Request $request)
     {
-
         try {
             $complaint = new Complaint();
             $complaint->title = $request->title;

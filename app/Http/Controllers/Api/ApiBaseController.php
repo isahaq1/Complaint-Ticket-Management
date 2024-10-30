@@ -18,10 +18,7 @@ class ApiBaseController extends Controller
         return response()->json(['status' => $status, 'message' => $message, 'data' => $data], $statusCode);
     }
 
-    public function sendResponse($status = true, $message, $data = null)
-    {
-        return response()->json(['status' =>  $status, 'message' => $message, 'data' => $data]);
-    }
+ 
 
     /**
      * return error response.
