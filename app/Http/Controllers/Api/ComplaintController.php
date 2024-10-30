@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Api;
 
 use App\Models\Complaint;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Exception;
 
 class ComplaintController extends ApiBaseController
@@ -46,7 +47,32 @@ class ComplaintController extends ApiBaseController
      */
     public function store(Request $request)
     {
-        //
+
+        try {
+            $complaint = new Complaint();
+            $complaint->title = $request->title;
+            $complaint->category_id = $request->category;
+            $complaint->description = $request->description;
+            $complaint->priority    = $request->priority;
+            $complaint->user_id     = Auth::user()->id;
+            $complaint->save();
+
+            return $this->sendSuccess(
+                data: $complaint,
+                message: 'Complaints Successfully Submited',
+                status: true,
+                statusCode: 201
+
+            );
+        } catch (Exception $ex) {
+
+            return $this->sendError(
+                errors: $ex->getMessage(),
+                message: 'Something went wrong ',
+                code: 203
+
+            );
+        }
     }
 
     /**
