@@ -8,6 +8,7 @@ use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Validation\ValidationException;
+use App\Http\Resources\UserResource;
 
 class AuthController extends Controller
 {
@@ -26,7 +27,7 @@ class AuthController extends Controller
         ]);
 
         //$user->assignRole('user'); // Default role assignment
-        $user->assignRole('admin');
+        $user->assignRole('user');
         return response()->json(['user' => $user, 'success' => true], 201);
     }
 
@@ -60,6 +61,6 @@ class AuthController extends Controller
     {
         $users = User::all();
 
-        return response()->json(['status' => true, 'message' => 'User Data Fetch Successfully', 'data' => $users], 200);
+        return response()->json(['status' => true, 'message' => 'User Data Fetch Successfully', 'data' => UserResource::collection($users)], 200);
     }
 }

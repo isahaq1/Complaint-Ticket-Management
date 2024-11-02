@@ -9,5 +9,10 @@
         "axios": "^1.6.4",
         "laravel-vite-plugin": "^1.0.0",
         "vite": "^5.0.0"
+    },
+    "dependencies": {
+        "@types/datatables.net": "^1.12.3",
+        "datatables.net": "^2.1.8",
+        "datatables.net-dt": "^2.1.8"
     }
 }

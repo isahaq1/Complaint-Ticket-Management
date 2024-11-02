@@ -20,6 +20,7 @@ return new class extends Migration
             $table->text('attachment')->nullable();
             $table->enum('status', ['Open', 'In Progress', 'Resolved', 'Closed'])->default('Open');
             $table->foreignId('user_id');
+            $table->timestamp('resolved_date')->nullable();
             $table->timestamps();
         });
     }

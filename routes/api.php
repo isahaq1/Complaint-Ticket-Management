@@ -5,23 +5,37 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\Api\CategoryController;
 use App\Http\Controllers\Api\ComplaintController;
+use App\Http\Controllers\Api\DashboardController;
+use App\Http\Controllers\Api\CommentController;
 
 Route::post('/register', [AuthController::class, 'register'])->name('register');
 Route::post('/login', [AuthController::class, 'login'])->name('login');
 
 
 
-
-Route::apiResource('complaints', ComplaintController::class);
-Route::middleware(['auth:sanctum', 'role:admin'])->group(function () {
-    Route::apiResource('categories', CategoryController::class);
-    Route::get('/user-list', [AuthController::class, 'userList']);
+Route::middleware('auth:sanctum')->group(function () {
     Route::get('/admin/dashboard', function () {
         return response()->json(['message' => 'Welcome to the admin dashboard']);
     });
+    Route::apiResource('complaints', ComplaintController::class);
+    Route::post('/complaint-report', [ComplaintController::class, 'report']);
+    Route::get('/dashboard', [DashboardController::class, 'index']);
+    Route::post('/complaints/{id}/comments', [CommentController::class, 'store']);
+    Route::get('/complaints/{id}/comments', [CommentController::class, 'complaintComments']);
+    Route::get('category-list', [CategoryController::class, 'index']);
+});
+
+Route::middleware(['auth:sanctum', 'role:admin'])->group(function () {
+
+    Route::apiResource('categories', CategoryController::class);
+    Route::get('/user-list', [AuthController::class, 'userList']);
+    Route::put('/complaintStatus/change/{id}', [ComplaintController::class, 'changeStatus']);
+   
+    
 });
 
 Route::middleware(['auth:sanctum', 'role:user'])->group(function () {
+   
     Route::get('/user/dashboard', function () {
         return response()->json(['message' => 'test Welcome to the user dashboard']);
     });
