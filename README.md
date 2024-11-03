@@ -1,4 +1,5 @@
 # Complaint-Ticket-Management
+```
 Clone the repo
 and run your shell/terminal
 update Composer
@@ -13,6 +14,10 @@ php artisan db:seed --class=RolePermissionSeeder
 Seed Initial Admin User Data: run
 php artisan db:seed --class=UserSeeder
 your default admin user emal:admin@example.com and password:12345678
+
+if you want to add test category you can run
+php artisan db:seed --class=CategorySeeder
+
 run you application by command:
 php artisan serve
 
