@@ -11,7 +11,7 @@ Migrate all the Tables: php artisan migrate
 Seed Initial Role Permission  Data:run
 php artisan db:seed --class=RolePermissionSeeder
 Seed Initial Admin User Data: run
-php artisan db:seed --class=RolePermissionSeeder
+php artisan db:seed --class=UserSeeder
 run you application by command:
 php artisan serve
 
