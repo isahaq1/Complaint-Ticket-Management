@@ -12,6 +12,7 @@ Seed Initial Role Permission  Data:run
 php artisan db:seed --class=RolePermissionSeeder
 Seed Initial Admin User Data: run
 php artisan db:seed --class=UserSeeder
+your default admin user emal:admin@example.com and password:12345678
 run you application by command:
 php artisan serve
 
