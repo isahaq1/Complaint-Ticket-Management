@@ -9,6 +9,7 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Validation\ValidationException;
 use App\Http\Resources\UserResource;
+use Exception;
 
 class AuthController extends Controller
 {
@@ -62,5 +63,35 @@ class AuthController extends Controller
         $users = User::all();
 
         return response()->json(['status' => true, 'message' => 'User Data Fetch Successfully', 'data' => UserResource::collection($users)], 200);
+    }
+
+    public function createUser(Request $request)
+    {
+        try {
+            $request->validate([
+                'name' => 'required|string|max:255',
+                'email' => 'required|string|email|unique:users',
+                'password' => 'required|string|min:8',
+                'role' => 'required',
+            ]);
+
+            $user = User::create([
+                'name' => $request->name,
+                'email' => $request->email,
+                'password' => Hash::make($request->password),
+            ]);
+
+            $role = $request->role;
+            $user->assignRole($role);
+            return response()->json(['user' => $user, 'success' => true], 201);
+        } catch (Exception $ex) {
+
+            return $this->sendError(
+                errors: $ex->getMessage(),
+                message: 'Something went wrong ',
+                code: 203
+
+            );
+        }
     }
 }

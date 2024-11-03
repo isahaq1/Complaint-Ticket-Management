@@ -8,7 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 class Complaint extends Model
 {
     use HasFactory;
-    protected $fillable = ['category_id','title','priority','attachment','status','user_id','resolved_date','description'];
+    protected $fillable = ['category_id', 'title', 'priority', 'attachment', 'status', 'user_id', 'resolved_at', 'description'];
 
     public function user()
     {

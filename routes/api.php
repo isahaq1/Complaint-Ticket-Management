@@ -29,13 +29,17 @@ Route::middleware(['auth:sanctum', 'role:admin'])->group(function () {
 
     Route::apiResource('categories', CategoryController::class);
     Route::get('/user-list', [AuthController::class, 'userList']);
+    Route::post('/create-user', [AuthController::class, 'createUser']);
     Route::put('/complaintStatus/change/{id}', [ComplaintController::class, 'changeStatus']);
-   
-    
+    Route::get('/priority-report', [ComplaintController::class, 'priorityReport']);
+    Route::get('/status-report', [ComplaintController::class, 'statusReport']);
+    Route::get('/category-report', [ComplaintController::class, 'categoryReport']);
+    Route::get('/resolution-time-report', [ComplaintController::class, 'resolutionReport']);
+    Route::get('/complaint-trend-report', [ComplaintController::class, 'complaintTrend']);
 });
 
 Route::middleware(['auth:sanctum', 'role:user'])->group(function () {
-   
+
     Route::get('/user/dashboard', function () {
         return response()->json(['message' => 'test Welcome to the user dashboard']);
     });
