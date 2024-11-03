@@ -1,6 +1,6 @@
 # Complaint-Ticket-Management
 Clone the repo
-and
+and run you shell
 update Composer
 
 create a ".env" file and add your database and mail config data
